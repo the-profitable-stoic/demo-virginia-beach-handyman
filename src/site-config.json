@@ -1,0 +1,548 @@
+{
+  "business": {
+    "name": "Virginia Beach Handyman",
+    "phone": "+19488887760",
+    "category": "handyman service",
+    "city": "Virginia Beach",
+    "state": "VA"
+  },
+  "design": {
+    "preset": {
+      "id": "roofing-trust-navy",
+      "categoryGroup": "roofing",
+      "name": "Trust Navy",
+      "recipeFile": "roofing/trust-navy.astro",
+      "colors": {
+        "primary": "#2C4563",
+        "primaryDark": "#1B2F45",
+        "primaryLight": "#D4E0ED",
+        "secondary": "#3D5A80",
+        "accent": "#3D6B5A",
+        "background": "#FFFFFF",
+        "backgroundAlt": "#2C4563",
+        "surface": "#F4F6F8",
+        "text": "#1A1A2E",
+        "textLight": "#4A5568",
+        "textOnDark": "#FFFFFF",
+        "border": "#E5E7EB"
+      },
+      "typography": {
+        "headingFont": "Playfair Display",
+        "headingWeight": "700",
+        "bodyFont": "Source Sans 3",
+        "bodyWeight": "400",
+        "headingStyle": "normal",
+        "scale": "1.25"
+      },
+      "shape": {
+        "borderRadius": "6px",
+        "buttonRadius": "6px",
+        "cardRadius": "10px",
+        "shadowStyle": "soft"
+      },
+      "sections": {
+        "heroStyle": "dark",
+        "sectionAlternation": [
+          "light",
+          "surface",
+          "light",
+          "dark",
+          "light"
+        ],
+        "animationStyle": "fade",
+        "spacingScale": "balanced"
+      }
+    },
+    "recipeId": "roofing/trust-navy"
+  },
+  "content": {
+    "homepage": {
+      "heroHeadline": "Handyman Services Done Right",
+      "heroSubline": "Reliable repairs and improvements across Virginia Beach. We tackle any challenge with skill and precision.",
+      "aboutTitle": "Your Trusted Handyman in Virginia Beach",
+      "aboutText": [
+        "Virginia Beach Handyman started with a simple mission: to provide honest, reliable handyman services to our neighbors. We saw a need for skilled professionals who treat every home as their own.",
+        "We believe in clear communication, upfront pricing, and meticulous workmanship. Our team is dedicated to exceeding expectations, ensuring every project is completed to the highest standards.",
+        "We're proud to be a part of the Virginia Beach community. We support local initiatives and are committed to providing exceptional service that strengthens our neighborhoods."
+      ],
+      "valueProps": [
+        {
+          "title": "Expert Craftsmanship",
+          "description": "Experienced professionals delivering top-quality repairs and installations."
+        },
+        {
+          "title": "Reliable Service",
+          "description": "Punctual, dependable, and committed to getting the job done right the first time."
+        },
+        {
+          "title": "Upfront Pricing",
+          "description": "Honest and transparent pricing with no hidden fees or surprises."
+        },
+        {
+          "title": "Local Expertise",
+          "description": "Deep understanding of Virginia Beach homes and the challenges they face."
+        }
+      ],
+      "ctaHeadline": "Get Your Free Estimate Today",
+      "ctaSubline": "Let us handle your home repairs and improvements with expertise and care."
+    },
+    "services": [
+      {
+        "slug": "drywall-repair",
+        "name": "Drywall Repair",
+        "shortDescription": "Seamless drywall repairs to restore the integrity of your walls.",
+        "description": "From small dings and dents to large holes, Virginia Beach Handyman provides expert drywall repair services. We understand the unique challenges posed by Virginia Beach's humid climate, which can exacerbate drywall damage. Our team will assess the damage, provide a clear explanation of the repair process, and execute a flawless repair that blends seamlessly with your existing walls. We handle everything from patching and sanding to texture matching and painting, ensuring a smooth, durable, and aesthetically pleasing finish. We work on all types of drywall, including standard, moisture-resistant, and fire-resistant varieties. Don't let unsightly drywall damage detract from the beauty and value of your home.",
+        "process": [
+          "Step 1: Assess the damage and provide a detailed estimate.",
+          "Step 2: Prepare the area by covering furniture and protecting flooring.",
+          "Step 3: Patch, sand, and prime the damaged area.",
+          "Step 4: Match the texture and paint to create a seamless finish."
+        ],
+        "benefits": [
+          "Restores the appearance of your walls.",
+          "Prevents further damage from moisture and pests.",
+          "Increases the value of your home.",
+          "Provides a smooth, paint-ready surface."
+        ],
+        "faq": [
+          {
+            "question": "How long does drywall repair take?",
+            "answer": "The time required depends on the size and severity of the damage, but most repairs can be completed in a single day."
+          },
+          {
+            "question": "Can you match the existing texture of my walls?",
+            "answer": "Yes, our skilled technicians are experts at matching a wide variety of textures, ensuring a seamless repair."
+          },
+          {
+            "question": "Do you offer painting services after the repair?",
+            "answer": "Yes, we offer complete painting services to ensure a uniform and professional finish."
+          }
+        ]
+      },
+      {
+        "slug": "deck-repair-and-maintenance",
+        "name": "Deck Repair & Maintenance",
+        "shortDescription": "Keep your deck safe and beautiful with our expert repair and maintenance services.",
+        "description": "Virginia Beach decks take a beating from the sun, salt air, and seasonal storms. Virginia Beach Handyman specializes in deck repair and maintenance to keep your outdoor space safe, functional, and beautiful. We handle everything from replacing damaged boards and railings to power washing, staining, and sealing. We understand the common issues faced by local decks, such as wood rot, insect damage, and corrosion. Our team uses high-quality materials and proven techniques to ensure lasting repairs and protection against the elements. Whether you need a minor repair or a complete deck overhaul, we have the expertise to get the job done right. Regular maintenance is crucial to extending the life of your deck and preventing costly repairs down the road. Let us help you keep your deck in top condition for years to come.",
+        "process": [
+          "Step 1: Inspect the deck for damage and assess the overall condition.",
+          "Step 2: Replace damaged boards, railings, and stairs.",
+          "Step 3: Power wash the deck to remove dirt, mildew, and algae.",
+          "Step 4: Apply a high-quality stain and sealant to protect the wood."
+        ],
+        "benefits": [
+          "Extends the life of your deck.",
+          "Enhances the safety of your outdoor space.",
+          "Increases the value of your home.",
+          "Protects against wood rot, insect damage, and corrosion."
+        ],
+        "faq": [
+          {
+            "question": "How often should I have my deck sealed?",
+            "answer": "We recommend sealing your deck every 1-2 years, depending on the level of exposure to the elements."
+          },
+          {
+            "question": "What type of stain or sealant should I use?",
+            "answer": "We can help you choose the best stain or sealant for your deck based on the type of wood and your desired aesthetic."
+          },
+          {
+            "question": "Do you offer deck cleaning services?",
+            "answer": "Yes, we offer professional deck cleaning services to remove dirt, mildew, and algae."
+          }
+        ]
+      },
+      {
+        "slug": "door-installation-and-repair",
+        "name": "Door Installation & Repair",
+        "shortDescription": "Professional door services to enhance the security and appearance of your home.",
+        "description": "Your doors are essential for security, energy efficiency, and curb appeal. Virginia Beach Handyman provides expert door installation and repair services to keep your home safe and comfortable. We handle all types of doors, including entry doors, interior doors, sliding glass doors, and storm doors. Whether you need a new door installed, a damaged door repaired, or a sticky door adjusted, our team has the skills and experience to get the job done right. We understand the importance of proper installation to ensure a secure and weather-tight fit. We also offer door hardware replacement and upgrades to enhance the security and functionality of your doors. Don't let damaged or outdated doors compromise the safety and beauty of your home.",
+        "process": [
+          "Step 1: Assess the existing door and frame.",
+          "Step 2: Remove the old door and prepare the opening.",
+          "Step 3: Install the new door and ensure a proper fit.",
+          "Step 4: Install new hardware and weather stripping."
+        ],
+        "benefits": [
+          "Enhances the security of your home.",
+          "Improves energy efficiency.",
+          "Increases curb appeal.",
+          "Provides a smooth and reliable operation."
+        ],
+        "faq": [
+          {
+            "question": "How long does it take to install a new door?",
+            "answer": "Most door installations can be completed in a few hours, depending on the complexity of the project."
+          },
+          {
+            "question": "What types of doors do you install?",
+            "answer": "We install all types of doors, including entry doors, interior doors, sliding glass doors, and storm doors."
+          },
+          {
+            "question": "Do you offer door hardware replacement?",
+            "answer": "Yes, we offer a wide selection of door hardware to enhance the security and appearance of your doors."
+          }
+        ]
+      },
+      {
+        "slug": "window-repair-and-replacement",
+        "name": "Window Repair & Replacement",
+        "shortDescription": "Improve your home's energy efficiency and aesthetics with our window services.",
+        "description": "Leaky or damaged windows can significantly impact your home's energy efficiency and comfort. Virginia Beach Handyman offers expert window repair and replacement services to address these issues. We handle all types of windows, including single-pane, double-pane, and energy-efficient windows. Our team can repair cracked glass, replace broken hardware, and seal drafts to improve your home's insulation. If your windows are beyond repair, we offer professional window replacement services with a wide selection of styles and materials to choose from. We understand the importance of proper installation to ensure a weather-tight seal and optimal energy performance. Investing in new windows can significantly reduce your energy bills and enhance the value of your home.",
+        "process": [
+          "Step 1: Assess the condition of your existing windows.",
+          "Step 2: Remove the old windows and prepare the opening.",
+          "Step 3: Install the new windows and ensure a proper fit.",
+          "Step 4: Seal the windows to prevent drafts and leaks."
+        ],
+        "benefits": [
+          "Improves energy efficiency.",
+          "Reduces energy bills.",
+          "Enhances the comfort of your home.",
+          "Increases the value of your property."
+        ],
+        "faq": [
+          {
+            "question": "How do I know if my windows need to be replaced?",
+            "answer": "Common signs include drafts, condensation between the panes, and difficulty opening or closing the windows."
+          },
+          {
+            "question": "What are the benefits of energy-efficient windows?",
+            "answer": "Energy-efficient windows can significantly reduce your energy bills and improve the comfort of your home by minimizing heat transfer."
+          },
+          {
+            "question": "Do you offer window sealing services?",
+            "answer": "Yes, we offer professional window sealing services to prevent drafts and leaks."
+          }
+        ]
+      },
+      {
+        "slug": "furniture-assembly",
+        "name": "Furniture Assembly",
+        "shortDescription": "Hassle-free furniture assembly services for your home or office.",
+        "description": "Avoid the frustration of complicated furniture assembly instructions with Virginia Beach Handyman. We provide fast and efficient furniture assembly services for all types of furniture, from beds and dressers to desks and entertainment centers. Our team has the tools and expertise to assemble your furniture quickly and correctly, saving you time and stress. We handle furniture from all major retailers and manufacturers. We'll carefully unpack your furniture, assemble it according to the manufacturer's instructions, and dispose of all packing materials. Enjoy your new furniture without the hassle of assembly. We ensure all screws and bolts are tightened, all parts are in the correct place, and the furniture is safe and stable.",
+        "process": [
+          "Step 1: Unpack the furniture and inventory all parts.",
+          "Step 2: Assemble the furniture according to the manufacturer's instructions.",
+          "Step 3: Ensure all screws and bolts are tightened.",
+          "Step 4: Dispose of all packing materials."
+        ],
+        "benefits": [
+          "Saves you time and stress.",
+          "Ensures your furniture is assembled correctly.",
+          "Prevents damage to your furniture.",
+          "Provides a hassle-free experience."
+        ],
+        "faq": [
+          {
+            "question": "How much does furniture assembly cost?",
+            "answer": "The cost depends on the type and complexity of the furniture. Contact us for a free quote."
+          },
+          {
+            "question": "Do you assemble furniture from all retailers?",
+            "answer": "Yes, we assemble furniture from all major retailers and manufacturers."
+          },
+          {
+            "question": "How long does furniture assembly take?",
+            "answer": "The time required depends on the type and complexity of the furniture. Most assemblies can be completed in a few hours."
+          }
+        ]
+      },
+      {
+        "slug": "gutter-cleaning-and-repair",
+        "name": "Gutter Cleaning & Repair",
+        "shortDescription": "Protect your home from water damage with our gutter services.",
+        "description": "Clogged or damaged gutters can lead to serious water damage to your home's foundation, roof, and siding. Virginia Beach Handyman provides professional gutter cleaning and repair services to keep your gutters functioning properly. We remove leaves, debris, and other obstructions from your gutters and downspouts, ensuring that rainwater is effectively channeled away from your home. We also repair damaged gutters, including leaks, sags, and broken hangers. Regular gutter cleaning and maintenance are essential for preventing costly water damage. Our team is equipped to handle even the most challenging gutter cleaning and repair projects. We understand the importance of protecting your home from the elements, especially in Virginia Beach's coastal environment.",
+        "process": [
+          "Step 1: Inspect the gutters for clogs and damage.",
+          "Step 2: Remove leaves, debris, and other obstructions.",
+          "Step 3: Repair any damaged sections of the gutters.",
+          "Step 4: Ensure that the downspouts are clear and functioning properly."
+        ],
+        "benefits": [
+          "Protects your home from water damage.",
+          "Prevents foundation problems.",
+          "Extends the life of your roof and siding.",
+          "Saves you money on costly repairs."
+        ],
+        "faq": [
+          {
+            "question": "How often should I have my gutters cleaned?",
+            "answer": "We recommend cleaning your gutters at least twice a year, especially in the spring and fall."
+          },
+          {
+            "question": "What are the signs of gutter damage?",
+            "answer": "Common signs include leaks, sags, and overflowing gutters."
+          },
+          {
+            "question": "Do you offer gutter guard installation?",
+            "answer": "Yes, we offer gutter guard installation to prevent leaves and debris from clogging your gutters."
+          }
+        ]
+      }
+    ],
+    "serviceAreas": [
+      {
+        "city": "Virginia Beach",
+        "slug": "virginia-beach-va",
+        "state": "VA",
+        "content": "Virginia Beach Handyman is proud to offer our comprehensive handyman services to the residents and businesses of Virginia Beach, VA. From minor repairs to major renovations, our team of skilled professionals is equipped to handle any project with precision and care. We understand the unique needs of this coastal community and are committed to providing reliable and affordable solutions to keep your property in top condition.\n\nWe are deeply rooted in Virginia Beach and dedicated to exceeding your expectations. Whether you need help with drywall repair, painting, carpentry, or any other home improvement task, you can count on Virginia Beach Handyman to deliver exceptional results. We prioritize customer satisfaction and strive to build lasting relationships with our clients by providing honest, transparent, and dependable service.",
+        "localContext": "Virginia Beach is a vibrant coastal city known for its beautiful beaches, lively boardwalk, and diverse neighborhoods. We are familiar with the specific challenges faced by homeowners and businesses in this area, such as dealing with saltwater corrosion and storm damage.",
+        "nearbyAreas": [
+          "Norfolk",
+          "Chesapeake",
+          "Portsmouth"
+        ]
+      },
+      {
+        "city": "Norfolk",
+        "slug": "norfolk-va",
+        "state": "VA",
+        "content": "Virginia Beach Handyman extends its expert handyman services to the city of Norfolk, VA. We cater to the diverse needs of Norfolk residents, offering a wide range of repair, maintenance, and improvement solutions for homes and businesses alike. Our experienced team is committed to providing high-quality workmanship and exceptional customer service.\n\nWe understand the unique character of Norfolk, from its historic neighborhoods to its bustling downtown area. Virginia Beach Handyman is dedicated to helping you maintain and enhance your property, ensuring it remains a comfortable and valuable asset. From plumbing fixes to electrical upgrades, we've got you covered.",
+        "localContext": "Norfolk is a historic port city with a strong naval presence and a thriving arts and culture scene. We are experienced in working on a variety of properties in Norfolk, from historic homes to modern apartments.",
+        "nearbyAreas": [
+          "Virginia Beach",
+          "Chesapeake",
+          "Portsmouth"
+        ]
+      },
+      {
+        "city": "Chesapeake",
+        "slug": "chesapeake-va",
+        "state": "VA",
+        "content": "Virginia Beach Handyman is pleased to provide top-notch handyman services to the residents and businesses of Chesapeake, VA. Our skilled team is equipped to handle a wide range of projects, from small home repairs to larger renovations. We are committed to delivering exceptional workmanship and exceeding customer expectations.\n\nWe recognize the diverse needs of Chesapeake's communities, from its rural areas to its suburban neighborhoods. Virginia Beach Handyman is dedicated to providing reliable, affordable, and professional service to ensure your property is well-maintained and looking its best. Whether you need help with carpentry, painting, or general home maintenance, we're here to help.",
+        "localContext": "Chesapeake is a growing city with a mix of urban and rural areas, offering a diverse range of housing options and a strong sense of community. We understand the specific needs of homeowners in Chesapeake, from maintaining large properties to addressing common home repair issues.",
+        "nearbyAreas": [
+          "Virginia Beach",
+          "Norfolk",
+          "Suffolk"
+        ]
+      },
+      {
+        "city": "Portsmouth",
+        "slug": "portsmouth-va",
+        "state": "VA",
+        "content": "Virginia Beach Handyman proudly serves the historic city of Portsmouth, VA, offering comprehensive handyman services to homeowners and businesses. Our skilled team is dedicated to providing reliable, efficient, and affordable solutions for all your repair, maintenance, and improvement needs. We are committed to delivering exceptional workmanship and exceeding customer expectations.\n\nWe appreciate Portsmouth's rich history and unique architectural character. Virginia Beach Handyman is dedicated to helping you preserve and enhance your property, ensuring it remains a valuable asset. From minor repairs to major renovations, you can count on us to deliver quality results and exceptional customer service.",
+        "localContext": "Portsmouth is a historic seaport city with a charming downtown area and a strong sense of community. We are familiar with the unique challenges of working on historic properties in Portsmouth and are committed to preserving their character.",
+        "nearbyAreas": [
+          "Norfolk",
+          "Chesapeake",
+          "Suffolk"
+        ]
+      },
+      {
+        "city": "Suffolk",
+        "slug": "suffolk-va",
+        "state": "VA",
+        "content": "Virginia Beach Handyman extends its professional handyman services to the city of Suffolk, VA. We understand the diverse needs of Suffolk residents and businesses, offering a wide range of repair, maintenance, and improvement solutions. Our experienced team is dedicated to providing high-quality workmanship and exceptional customer service.\n\nWe recognize the unique character of Suffolk, from its agricultural roots to its growing suburban areas. Virginia Beach Handyman is dedicated to helping you maintain and enhance your property, ensuring it remains a comfortable and valuable asset. Whether you need help with landscaping, fencing, or general home repairs, we've got you covered.",
+        "localContext": "Suffolk is a large city with a diverse economy and a mix of rural and suburban areas. We are experienced in working on a variety of properties in Suffolk, from farms to residential homes.",
+        "nearbyAreas": [
+          "Chesapeake",
+          "Portsmouth",
+          "Smithfield"
+        ]
+      },
+      {
+        "city": "Smithfield",
+        "slug": "smithfield-va",
+        "state": "VA",
+        "content": "Virginia Beach Handyman is pleased to offer its handyman services to the town of Smithfield, VA. We cater to the unique needs of Smithfield residents, providing a wide range of repair, maintenance, and improvement solutions for homes and businesses. Our experienced team is committed to providing high-quality workmanship and exceptional customer service.\n\nWe understand the small-town charm and historic character of Smithfield. Virginia Beach Handyman is dedicated to helping you maintain and enhance your property, ensuring it remains a comfortable and valuable asset. From painting to carpentry, we've got you covered. We pride ourselves on punctuality and quality craftsmanship at a fair price.",
+        "localContext": "Smithfield is a historic town known for its ham and its charming downtown area. We are experienced in working on historic properties in Smithfield and are committed to preserving their character.",
+        "nearbyAreas": [
+          "Suffolk",
+          "Newport News",
+          "Hampton"
+        ]
+      },
+      {
+        "city": "Newport News",
+        "slug": "newport-news-va",
+        "state": "VA",
+        "content": "Virginia Beach Handyman proudly serves Newport News, VA, offering comprehensive handyman services to homeowners and businesses. Our skilled team is dedicated to providing reliable, efficient, and affordable solutions for all your repair, maintenance, and improvement needs. We are committed to delivering exceptional workmanship and exceeding customer expectations.\n\nWe appreciate Newport News' rich history and diverse community. Virginia Beach Handyman is dedicated to helping you preserve and enhance your property, ensuring it remains a valuable asset. From minor repairs to major renovations, you can count on us to deliver quality results and exceptional customer service. We tackle any job with the utmost care and attention to detail.",
+        "localContext": "Newport News is a city with a strong shipbuilding industry and a rich maritime history. We are familiar with the specific needs of homeowners and businesses in Newport News and are committed to providing reliable service.",
+        "nearbyAreas": [
+          "Hampton",
+          "Smithfield",
+          "Williamsburg"
+        ]
+      },
+      {
+        "city": "Hampton",
+        "slug": "hampton-va",
+        "state": "VA",
+        "content": "Virginia Beach Handyman extends its professional handyman services to the city of Hampton, VA. We understand the diverse needs of Hampton residents and businesses, offering a wide range of repair, maintenance, and improvement solutions. Our experienced team is dedicated to providing high-quality workmanship and exceptional customer service.\n\nWe recognize the unique character of Hampton, from its historic landmarks to its vibrant waterfront. Virginia Beach Handyman is dedicated to helping you maintain and enhance your property, ensuring it remains a comfortable and valuable asset. From plumbing fixes to electrical upgrades, we've got you covered. We're a phone call away!",
+        "localContext": "Hampton is a historic city with a strong aerospace industry and a vibrant arts and culture scene. We are experienced in working on a variety of properties in Hampton, from historic homes to modern apartments.",
+        "nearbyAreas": [
+          "Newport News",
+          "Poquoson",
+          "Williamsburg"
+        ]
+      }
+    ],
+    "reviews": [
+      {
+        "name": "Sarah M.",
+        "rating": 5,
+        "service": "Drywall Repair",
+        "text": "Virginia Beach Handyman did an amazing job repairing a large hole in my living room wall. The repair is seamless, and you can't even tell there was ever any damage. They were professional, efficient, and very reasonably priced. Highly recommend!",
+        "date": "2025-03-15"
+      },
+      {
+        "name": "John B.",
+        "rating": 4,
+        "service": "Deck Repair",
+        "text": "Our deck was in rough shape after the winter. Virginia Beach Handyman replaced several damaged boards and re-stained the entire deck. It looks brand new! They were quick to respond and provided a fair quote. The only reason I didn't give 5 stars is that the cleanup could have been a little better.",
+        "date": "2025-04-02"
+      },
+      {
+        "name": "Emily K.",
+        "rating": 5,
+        "service": "Furniture Assembly",
+        "text": "I recently moved and had a ton of furniture to assemble. Virginia Beach Handyman saved me so much time and stress! They were efficient, professional, and assembled everything perfectly. Great service!",
+        "date": "2025-04-18"
+      },
+      {
+        "name": "David L.",
+        "rating": 5,
+        "service": "Door Installation",
+        "text": "Excellent service! Virginia Beach Handyman installed a new front door for us, and it looks fantastic. The installation was seamless, and they took the time to ensure everything was properly sealed and secure. Highly recommend their door installation services.",
+        "date": "2025-05-05"
+      },
+      {
+        "name": "Jessica P.",
+        "rating": 4,
+        "service": "Gutter Cleaning",
+        "text": "Virginia Beach Handyman cleaned my gutters quickly and efficiently. They were very thorough and even pointed out a few areas that needed minor repairs. I appreciate their attention to detail and would definitely use them again.",
+        "date": "2025-05-12"
+      },
+      {
+        "name": "Robert T.",
+        "rating": 5,
+        "service": "Window Repair",
+        "text": "I had a cracked window that needed repair. Virginia Beach Handyman came out quickly and replaced the glass. The service was prompt, professional, and affordable. I'm very happy with the results.",
+        "date": "2025-05-20"
+      }
+    ],
+    "seo": {
+      "homepage": {
+        "title": "Virginia Beach Handyman | Expert Home Repair",
+        "description": "Trusted handyman services in Virginia Beach, VA. Reliable repairs, installations, and maintenance for your home. Get a free estimate today!"
+      },
+      "about": {
+        "title": "About Virginia Beach Handyman",
+        "description": "Learn about Virginia Beach Handyman, our commitment to quality, and our dedication to serving the Virginia Beach community."
+      },
+      "services": {
+        "title": "Handyman Services | Virginia Beach, VA",
+        "description": "Comprehensive handyman services in Virginia Beach. From drywall repair to deck maintenance, we handle all your home repair needs."
+      },
+      "contact": {
+        "title": "Contact Virginia Beach Handyman",
+        "description": "Contact Virginia Beach Handyman for a free estimate. We're ready to handle your home repair and improvement projects in Virginia Beach, VA."
+      },
+      "reviews": {
+        "title": "Virginia Beach Handyman Reviews",
+        "description": "Read what our satisfied customers are saying about Virginia Beach Handyman. See why we're the trusted choice for home repair in Virginia Beach."
+      },
+      "service-areas": {
+        "title": "Service Areas",
+        "description": "Virginia Beach Handyman provides services throughout Virginia Beach and surrounding areas. See our complete service area list."
+      }
+    },
+    "companyInfo": {
+      "yearsInBusiness": 12,
+      "projectsCompleted": "800+",
+      "satisfaction": "97%",
+      "teamSize": "20+"
+    }
+  },
+  "images": {
+    "hero": "/images/hero.webp",
+    "heroResponsive": {
+      "src": "/images/hero.webp",
+      "srcset": "/images/hero-400w.webp 400w, /images/hero-800w.webp 800w, /images/hero-1200w.webp 1200w, /images/hero.webp 1376w",
+      "sizes": "100vw",
+      "width": 1376,
+      "height": 768
+    },
+    "about": "/images/about.webp",
+    "aboutResponsive": {
+      "src": "/images/about.webp",
+      "srcset": "/images/about-400w.webp 400w, /images/about-800w.webp 800w, /images/about-1200w.webp 1200w, /images/about.webp 1200w",
+      "sizes": "(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw",
+      "width": 1200,
+      "height": 896
+    },
+    "services": {
+      "drywall-repair": "/images/service-drywall-repair.webp",
+      "deck-repair-and-maintenance": "/images/service-deck-repair-and-maintenance.webp",
+      "door-installation-and-repair": "/images/service-door-installation-and-repair.webp",
+      "window-repair-and-replacement": "/images/service-window-repair-and-replacement.webp",
+      "furniture-assembly": "/images/service-furniture-assembly.webp",
+      "gutter-cleaning-and-repair": "/images/service-gutter-cleaning-and-repair.webp"
+    },
+    "servicesResponsive": {
+      "drywall-repair": {
+        "src": "/images/service-drywall-repair.webp",
+        "srcset": "/images/service-drywall-repair-400w.webp 400w, /images/service-drywall-repair-800w.webp 800w, /images/service-drywall-repair-1200w.webp 1200w, /images/service-drywall-repair.webp 1264w",
+        "sizes": "(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw",
+        "width": 1264,
+        "height": 848
+      },
+      "deck-repair-and-maintenance": {
+        "src": "/images/service-deck-repair-and-maintenance.webp",
+        "srcset": "/images/service-deck-repair-and-maintenance-400w.webp 400w, /images/service-deck-repair-and-maintenance-800w.webp 800w, /images/service-deck-repair-and-maintenance-1200w.webp 1200w, /images/service-deck-repair-and-maintenance.webp 1264w",
+        "sizes": "(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw",
+        "width": 1264,
+        "height": 848
+      },
+      "door-installation-and-repair": {
+        "src": "/images/service-door-installation-and-repair.webp",
+        "srcset": "/images/service-door-installation-and-repair-400w.webp 400w, /images/service-door-installation-and-repair-800w.webp 800w, /images/service-door-installation-and-repair-1200w.webp 1200w, /images/service-door-installation-and-repair.webp 1264w",
+        "sizes": "(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw",
+        "width": 1264,
+        "height": 848
+      },
+      "window-repair-and-replacement": {
+        "src": "/images/service-window-repair-and-replacement.webp",
+        "srcset": "/images/service-window-repair-and-replacement-400w.webp 400w, /images/service-window-repair-and-replacement-800w.webp 800w, /images/service-window-repair-and-replacement-1200w.webp 1200w, /images/service-window-repair-and-replacement.webp 1264w",
+        "sizes": "(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw",
+        "width": 1264,
+        "height": 848
+      },
+      "furniture-assembly": {
+        "src": "/images/service-furniture-assembly.webp",
+        "srcset": "/images/service-furniture-assembly-400w.webp 400w, /images/service-furniture-assembly-800w.webp 800w, /images/service-furniture-assembly-1200w.webp 1200w, /images/service-furniture-assembly.webp 1264w",
+        "sizes": "(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw",
+        "width": 1264,
+        "height": 848
+      },
+      "gutter-cleaning-and-repair": {
+        "src": "/images/service-gutter-cleaning-and-repair.webp",
+        "srcset": "/images/service-gutter-cleaning-and-repair-400w.webp 400w, /images/service-gutter-cleaning-and-repair-800w.webp 800w, /images/service-gutter-cleaning-and-repair-1200w.webp 1200w, /images/service-gutter-cleaning-and-repair.webp 1264w",
+        "sizes": "(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw",
+        "width": 1264,
+        "height": 848
+      }
+    },
+    "gallery": [
+      "/images/gallery-0.webp",
+      "/images/gallery-1.webp"
+    ],
+    "galleryResponsive": [
+      {
+        "src": "/images/gallery-0.webp",
+        "srcset": "/images/gallery-0-400w.webp 400w, /images/gallery-0-800w.webp 800w, /images/gallery-0-1200w.webp 1200w, /images/gallery-0.webp 1200w",
+        "sizes": "(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw",
+        "width": 1200,
+        "height": 896
+      },
+      {
+        "src": "/images/gallery-1.webp",
+        "srcset": "/images/gallery-1-400w.webp 400w, /images/gallery-1-800w.webp 800w, /images/gallery-1-1200w.webp 1200w, /images/gallery-1.webp 1264w",
+        "sizes": "(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw",
+        "width": 1264,
+        "height": 848
+      }
+    ]
+  }
+}

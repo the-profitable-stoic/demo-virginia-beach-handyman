@@ -1,0 +1,1378 @@
+---
+/**
+ * Recipe: Trust Navy
+ * Category: Roofing
+ * Reference: Voyager Exteriors style
+ * 
+ * A complete self-contained homepage recipe.
+ * Navy + sage palette, Playfair Display headings, professional trust-focused layout.
+ * NO external component imports — everything inline.
+ */
+import BaseLayout from "../layouts/BaseLayout.astro";
+import StickyMinimal from "../../components/nav/StickyMinimal.astro";
+import MultiColumn from "../../components/footer/MultiColumn.astro";
+import { siteConfig } from "../lib/site-config";
+import { getSeoForPage } from "../lib/seo";
+
+const seo = getSeoForPage("homepage");
+const biz = siteConfig.business;
+const content = siteConfig.content;
+const homepage = content.homepage;
+const services = content.services;
+const serviceAreas = content.serviceAreas;
+const reviews = content.reviews;
+const info = content.companyInfo;
+const images = siteConfig.images;
+const heroR = (images as any).heroResponsive;
+const servicesR = (images as any).servicesResponsive || {};
+
+const displayServices = services.slice(0, 6);
+const displayAreas = serviceAreas.slice(0, 8);
+const heroServices = services.slice(0, 3);
+const displayReviews = reviews.slice(0, 6);
+const galleryImages = images.gallery?.length ? images.gallery.slice(0, 6) : Object.values(images.services || {}).slice(0, 3);
+const firstFaq = services[0]?.faq || [];
+
+// Slug-to-display-name mapping
+
+const ACRONYMS = new Set(["hvac", "ac", "bbq", "rv", "atv", "suv"]);
+function nicheDisplayName(input: string): string {
+  return input.split(/[\s-]+/).map(word => {
+    if (ACRONYMS.has(word.toLowerCase())) return word.toUpperCase();
+    return word.charAt(0).toUpperCase() + word.slice(1);
+  }).join(" ");
+}
+const categoryDisplay = nicheDisplayName(biz.category);
+
+// Niche-aware language mappings
+const medicalNiches = new Set(["dentist", "chiropractor", "physical-therapy", "optometrist", "veterinarian"]);
+const autoNiches = new Set(["auto-repair", "auto-body", "auto-detailing", "towing", "tire-shop"]);
+const isMedical = medicalNiches.has(biz.category);
+const isAuto = autoNiches.has(biz.category);
+const ctaText = isMedical ? "Book an Appointment" : "Get a Free Estimate";
+const ctaAction = isMedical ? "Schedule a Visit" : isAuto ? "Get a Quote" : "Request an Estimate";
+
+// Niche display name → professional adjective form
+const NICHE_ADJECTIVES: Record<string, string> = {
+  "dentist": "Dental Care",
+  "chiropractor": "Chiropractic Care",
+  "optometrist": "Optometry",
+  "veterinarian": "Veterinary Care",
+  "physical-therapy": "Physical Therapy",
+  "auto-repair": "Auto Repair",
+  "auto-body": "Auto Body Repair",
+  "auto-detailing": "Auto Detailing",
+  "towing": "Towing",
+  "tire-shop": "Tire Service",
+  "electrical": "Electrical Services",
+  "solar": "Solar Installation",
+  "smart-home": "Smart Home Solutions",
+  "handyman": "Handyman Services",
+  "general-contractor": "General Contracting",
+  "kitchen-remodel": "Kitchen Remodeling",
+  "bath-remodel": "Bathroom Remodeling",
+  "garage-door": "Garage Door Service",
+};
+const categoryAdjective = NICHE_ADJECTIVES[biz.category] || categoryDisplay;
+
+// Article helper: "a" vs "an"
+const categoryArticle = /^[aeiou]/i.test(categoryDisplay) ? "an" : "a";
+
+
+---
+
+<BaseLayout
+  title={seo.title}
+  description={seo.description}
+  ogTitle={seo.ogTitle}
+  ogDescription={seo.ogDescription}
+>
+
+  <!-- ═══════════════════════════════════════════════ NAV ═══════════════════════════════════════════════ -->
+  <StickyMinimal slot="nav" />
+
+  <!-- ═══════════════════════════════════════════════ HERO ═══════════════════════════════════════════════ -->
+  <section class="tn-hero" style={`background-image: url('${images.hero}')`}>
+    <div class="tn-hero__overlay"></div>
+    <div class="tn-hero__inner container">
+      <div class="tn-hero__content">
+        <span class="tn-hero__label">{biz.category.toUpperCase()} EXPERTS</span>
+        <h1 class="tn-hero__headline">{homepage.heroHeadline}</h1>
+        <p class="tn-hero__subline">{homepage.heroSubline}</p>
+        <div class="tn-hero__buttons">
+          <a href="/contact" class="btn-primary">{ctaText} &rarr;</a>
+          <a href={`tel:${biz.phone}`} class="tn-hero__btn-outline">Call {biz.phone}</a>
+        </div>
+      </div>
+
+      <div class="tn-hero__form-card">
+        <h3 class="tn-hero__form-title">Let's Get Started</h3>
+        <form class="tn-hero__form" action="/contact" method="GET">
+          <input type="text" name="name" placeholder="Your Name" required class="tn-input" />
+          <input type="email" name="email" placeholder="Email Address" required class="tn-input" />
+          <input type="tel" name="phone" placeholder="Phone Number" class="tn-input" />
+          <select name="service" aria-label="Select a Service" class="tn-input">
+            <option value="">Select a Service</option>
+            {services.map((s) => (
+              <option value={s.slug}>{s.name}</option>
+            ))}
+          </select>
+          <input type="text" name="address" placeholder="Your Address" class="tn-input" />
+          <label class="form-consent" style="display:flex;gap:0.5rem;align-items:flex-start;font-size:0.75rem;color:var(--color-text-light,#666);line-height:1.5;margin:0.75rem 0;"><input type="checkbox" name="consent" required style="margin-top:0.2rem;flex-shrink:0" /><span>By submitting, I consent to receive calls/texts from {biz.name} at the number provided. Msg & data rates may apply. Reply STOP to opt out. <a href="/privacy/" style="color:var(--color-primary);text-decoration:underline">Privacy Policy</a> & <a href="/terms/" style="color:var(--color-primary);text-decoration:underline">Terms</a>.</span></label>
+            <button type="submit" class="tn-hero__form-submit">GET IN TOUCH &rarr;</button>
+        </form>
+      </div>
+    </div>
+
+    <div class="tn-hero__stats container">
+      <div class="tn-hero__stat">
+        <span class="tn-hero__stat-num">{info.yearsInBusiness}+</span>
+        <span class="tn-hero__stat-label">Years Experience</span>
+      </div>
+      <div class="tn-hero__stat">
+        <span class="tn-hero__stat-num">{info.projectsCompleted}</span>
+        <span class="tn-hero__stat-label">{isMedical ? "Patients Served" : "Projects Completed"}</span>
+      </div>
+      <div class="tn-hero__stat">
+        <span class="tn-hero__stat-num">{info.satisfaction}</span>
+        <span class="tn-hero__stat-label">Client Satisfaction</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════ SERVICES ═══════════════════════════════════════════════ -->
+  <section class="tn-services section-padding" id="services">
+    <div class="container">
+      <p class="tn-section-subtitle">What We Do</p>
+      <h2 class="tn-section-heading">Our Services</h2>
+      <div class="tn-services__grid">
+        {heroServices.map((s) => (
+          <a href={`/services/${s.slug}`} class="tn-services__card">
+            <img
+              src={images.services?.[s.slug] || images.hero}
+              alt={s.name}
+              class="tn-services__card-img"
+              loading="lazy"
+            />
+            <div class="tn-services__card-overlay">
+              <h3 class="tn-services__card-name">{s.name}</h3>
+            </div>
+          </a>
+        ))}
+      </div>
+      <div class="tn-services__more">
+        <a href="/services" class="tn-link-arrow">SEE ALL SERVICES &rarr;</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════ ABOUT / TRUST ═══════════════════════════════════════════════ -->
+  <section class="tn-about section-padding" id="about">
+    <div class="container">
+      <div class="tn-about__grid">
+        <div class="tn-about__content">
+          <p class="tn-section-subtitle">Who We Are</p>
+          <h2 class="tn-section-heading tn-section-heading--left">{homepage.aboutTitle || `Work with A Proven Contractor`}</h2>
+          {homepage.aboutText.map((p) => (
+            <p class="tn-about__text">{p}</p>
+          ))}
+          <div class="tn-about__stats">
+            <div class="tn-about__stat">
+              <span class="tn-about__stat-num">{info.yearsInBusiness}+</span>
+              <span class="tn-about__stat-label">Years</span>
+            </div>
+            <div class="tn-about__stat">
+              <span class="tn-about__stat-num">{info.projectsCompleted}</span>
+              <span class="tn-about__stat-label">Projects</span>
+            </div>
+            <div class="tn-about__stat">
+              <span class="tn-about__stat-num">{info.satisfaction}</span>
+              <span class="tn-about__stat-label">Satisfaction</span>
+            </div>
+          </div>
+          <a href="/contact" class="btn-primary" style="margin-top: 1.5rem;">GET IN TOUCH &rarr;</a>
+        </div>
+        <div class="tn-about__image-wrap">
+          <img src={images.about || images.hero} alt={`${biz.name} team`} class="tn-about__image" loading="lazy" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════ VALUE PROPS ═══════════════════════════════════════════════ -->
+  {homepage.valueProps && homepage.valueProps.length > 0 && (
+    <section class="tn-values section-padding">
+      <div class="container">
+        <p class="tn-section-subtitle">Our Difference</p>
+        <h2 class="tn-section-heading">Why Choose {biz.name}</h2>
+        <div class="tn-values__grid">
+          {homepage.valueProps.map((vp) => (
+            <div class="tn-values__card">
+              <h3 class="tn-values__card-title">{vp.title}</h3>
+              <p class="tn-values__card-desc">{vp.description}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
+
+  <!-- ═══════════════════════════════════════════════ CTA ═══════════════════════════════════════════════ -->
+  <section class="tn-cta">
+    <div class="container tn-cta__inner">
+      <h2 class="tn-cta__headline">{homepage.ctaHeadline || `Ready to Get Started?`}</h2>
+      <p class="tn-cta__subline">{homepage.ctaSubline || `Contact us today for a free, no-obligation estimate.`}</p>
+      <div class="tn-cta__buttons">
+        <a href="/contact" class="tn-cta__btn-white">Get a Free Estimate</a>
+        <a href={`tel:${biz.phone}`} class="tn-cta__btn-outline">Call {biz.phone}</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════ TESTIMONIALS ═══════════════════════════════════════════════ -->
+  {displayReviews.length > 0 && (
+    <section class="tn-testimonials section-padding" id="reviews">
+      <div class="container">
+        <p class="tn-section-subtitle">Client Feedback</p>
+        <h2 class="tn-section-heading">What Our Clients Say</h2>
+        <div class="tn-testimonials__grid">
+          {displayReviews.map((r) => (
+            <div class="tn-testimonials__card">
+              <div class="tn-testimonials__quote-icon">&ldquo;</div>
+              <div class="tn-testimonials__stars">
+                {Array.from({ length: r.rating }).map(() => (
+                  <svg class="tn-testimonials__star" width="16" height="16" viewBox="0 0 24 24" fill="var(--color-accent)"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                ))}
+              </div>
+              <p class="tn-testimonials__text">{r.text}</p>
+              <div class="tn-testimonials__author">
+                <span class="tn-testimonials__name">{r.name}</span>
+                {r.service && <span class="tn-testimonials__service">{r.service}</span>}
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
+
+  <!-- ═══════════════════════════════════════════════ GALLERY ═══════════════════════════════════════════════ -->
+  {galleryImages.length > 0 && (
+    <section class="tn-gallery section-padding" id="gallery">
+      <div class="container">
+        <p class="tn-section-subtitle">Our Portfolio</p>
+        <h2 class="tn-section-heading">Our Recent Work</h2>
+        <div class="tn-gallery__grid">
+          {galleryImages.map((img, i) => (
+            <div class="tn-gallery__item">
+              <img src={img} alt={`${biz.name} project ${i + 1}`} class="tn-gallery__img" loading="lazy" />
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
+
+  <!-- ═══════════════════════════════════════════════ FAQ ═══════════════════════════════════════════════ -->
+  {firstFaq.length > 0 && (
+    <section class="tn-faq section-padding" id="faq">
+      <div class="container">
+        <p class="tn-section-subtitle">Common Questions</p>
+        <h2 class="tn-section-heading">Frequently Asked Questions</h2>
+        <div class="tn-faq__list">
+          {firstFaq.map((item) => (
+            <details class="tn-faq__item">
+              <summary class="tn-faq__question">{item.question}</summary>
+              <div class="tn-faq__answer">{item.answer}</div>
+            </details>
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
+
+  <!-- ═══════════════════════════════════════════════ CONTACT ═══════════════════════════════════════════════ -->
+  <section class="tn-contact section-padding" id="contact">
+    <div class="container">
+      <p class="tn-section-subtitle">Reach Out</p>
+      <h2 class="tn-section-heading">Get In Touch</h2>
+      <div class="tn-contact__grid">
+        <form class="tn-contact__form" action="/contact" method="GET">
+          <input type="text" name="name" placeholder="Your Name" required class="tn-input" />
+          <input type="email" name="email" placeholder="Email Address" required class="tn-input" />
+          <input type="tel" name="phone" placeholder="Phone Number" class="tn-input" />
+          <select name="service" aria-label="Select a Service" class="tn-input">
+            <option value="">Select a Service</option>
+            {services.map((s) => (
+              <option value={s.slug}>{s.name}</option>
+            ))}
+          </select>
+          <textarea name="message" placeholder="Tell us about your project..." rows="4" class="tn-input tn-input--textarea"></textarea>
+          <label class="form-consent" style="display:flex;gap:0.5rem;align-items:flex-start;font-size:0.75rem;color:var(--color-text-light,#666);line-height:1.5;margin:0.75rem 0;"><input type="checkbox" name="consent" required style="margin-top:0.2rem;flex-shrink:0" /><span>By submitting, I consent to receive calls/texts from {biz.name} at the number provided. Msg & data rates may apply. Reply STOP to opt out. <a href="/privacy/" style="color:var(--color-primary);text-decoration:underline">Privacy Policy</a> & <a href="/terms/" style="color:var(--color-primary);text-decoration:underline">Terms</a>.</span></label>
+            <button type="submit" class="btn-primary" style="width:100%; justify-content:center;">Send Message &rarr;</button>
+        </form>
+        <div class="tn-contact__info">
+          <h3 class="tn-contact__info-heading">{biz.name}</h3>
+          <p class="tn-contact__info-text">Professional {biz.category.toLowerCase()} services in {biz.city}, {biz.state} and surrounding areas.</p>
+          <div class="tn-contact__info-row">
+            <strong>Phone</strong>
+            <a href={`tel:${biz.phone}`}>{biz.phone}</a>
+          </div>
+          <div class="tn-contact__info-row">
+            <strong>Location</strong>
+            <span>{biz.city}, {biz.state}</span>
+          </div>
+          <div class="tn-contact__info-row">
+            <strong>Experience</strong>
+            <span>{info.yearsInBusiness}+ Years</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════ FOOTER ═══════════════════════════════════════════════ -->
+  <MultiColumn slot="footer" />
+
+</BaseLayout>
+
+<!-- ═══════════════════════════════════════════════ SCRIPTS ═══════════════════════════════════════════════ -->
+<script>
+  // Mobile menu toggle
+  const btn = document.getElementById("tn-menu-btn");
+  const closeBtn = document.getElementById("tn-menu-close");
+  const panel = document.getElementById("tn-mobile-panel");
+  const overlay = document.getElementById("tn-mobile-overlay");
+
+  function openMenu() {
+    panel?.classList.add("is-open");
+    overlay?.classList.add("is-open");
+    btn?.setAttribute("aria-expanded", "true");
+    document.body.style.overflow = "hidden";
+  }
+  function closeMenu() {
+    panel?.classList.remove("is-open");
+    overlay?.classList.remove("is-open");
+    btn?.setAttribute("aria-expanded", "false");
+    document.body.style.overflow = "";
+  }
+
+  btn?.addEventListener("click", openMenu);
+  closeBtn?.addEventListener("click", closeMenu);
+  overlay?.addEventListener("click", closeMenu);
+
+  // Nav scroll shadow
+  const nav = document.getElementById("tn-nav");
+  let lastScroll = 0;
+  window.addEventListener("scroll", () => {
+    const y = window.scrollY;
+    if (y > 20) {
+      nav?.classList.add("is-scrolled");
+    } else {
+      nav?.classList.remove("is-scrolled");
+    }
+    lastScroll = y;
+  }, { passive: true });
+</script>
+
+<!-- ═══════════════════════════════════════════════ STYLES ═══════════════════════════════════════════════ -->
+<style>
+  /* ──────────────── NAV ──────────────── */
+  .tn-nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    background-color: var(--color-primary);
+    transition: box-shadow 0.3s ease;
+  }
+  .tn-nav.is-scrolled {
+    box-shadow: 0 2px 20px rgba(0, 0, 0, 0.25);
+  }
+  .tn-nav__inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 72px;
+  }
+  .tn-nav__brand {
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: 1.35rem;
+    color: #fff;
+    text-decoration: none;
+    white-space: nowrap;
+    letter-spacing: -0.01em;
+  }
+  .tn-nav__links {
+    display: none;
+    align-items: center;
+    gap: 0.25rem;
+  }
+  .tn-nav__link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+    padding: 0.5rem 0.85rem;
+    color: rgba(255, 255, 255, 0.9);
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 500;
+    border-radius: 4px;
+    transition: color 0.2s, background-color 0.2s;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-family: var(--font-body);
+  }
+  .tn-nav__link:hover {
+    color: #fff;
+    background-color: rgba(255, 255, 255, 0.1);
+  }
+  .tn-nav__link svg {
+    transition: transform 0.2s;
+  }
+
+  /* Dropdown */
+  .tn-nav__dropdown {
+    position: relative;
+  }
+  .tn-nav__drop-panel {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    min-width: 220px;
+    background: #fff;
+    border-radius: var(--radius-card, 8px);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+    padding: 0.5rem 0;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(8px);
+    transition: opacity 0.2s ease, transform 0.2s ease, visibility 0.2s;
+    z-index: 100;
+  }
+  .tn-nav__dropdown:hover .tn-nav__drop-panel,
+  .tn-nav__dropdown:focus-within .tn-nav__drop-panel {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+  }
+  .tn-nav__dropdown:hover .tn-nav__link svg {
+    transform: rotate(180deg);
+  }
+  .tn-nav__drop-link {
+    display: block;
+    padding: 0.55rem 1.25rem;
+    color: var(--color-text);
+    text-decoration: none;
+    font-size: 0.88rem;
+    transition: background-color 0.15s, color 0.15s;
+  }
+  .tn-nav__drop-link:hover {
+    background-color: var(--color-surface, #f4f6f8);
+    color: var(--color-primary);
+  }
+
+  /* Nav actions */
+  .tn-nav__actions {
+    display: none;
+    align-items: center;
+    gap: 1rem;
+  }
+  .tn-nav__phone {
+    color: rgba(255, 255, 255, 0.9);
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 600;
+    white-space: nowrap;
+  }
+  .tn-nav__phone:hover { color: #fff; }
+  .tn-nav__cta-btn {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.55rem 1.35rem;
+    background: #fff;
+    color: var(--color-primary);
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: 0.82rem;
+    letter-spacing: 0.05em;
+    text-decoration: none;
+    border-radius: var(--radius-button, 6px);
+    transition: background-color 0.2s, transform 0.15s;
+    white-space: nowrap;
+  }
+  .tn-nav__cta-btn:hover {
+    background: rgba(255, 255, 255, 0.9);
+    transform: translateY(-1px);
+  }
+
+  /* Hamburger */
+  .tn-nav__toggle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+  }
+  .tn-nav__hamburger,
+  .tn-nav__hamburger::before,
+  .tn-nav__hamburger::after {
+    display: block;
+    width: 22px;
+    height: 2px;
+    background: #fff;
+    border-radius: 2px;
+    transition: transform 0.25s ease;
+    position: relative;
+  }
+  .tn-nav__hamburger::before,
+  .tn-nav__hamburger::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    width: 100%;
+  }
+  .tn-nav__hamburger::before { top: -7px; }
+  .tn-nav__hamburger::after { top: 7px; }
+
+  /* Mobile panel & overlay */
+  .tn-mobile-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 1001;
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+  .tn-mobile-overlay.is-open {
+    display: block;
+    opacity: 1;
+  }
+  .tn-mobile-panel {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: 320px;
+    max-width: 85vw;
+    background: #fff;
+    z-index: 1002;
+    transform: translateX(100%);
+    transition: transform 0.3s ease;
+    overflow-y: auto;
+  }
+  .tn-mobile-panel.is-open {
+    transform: translateX(0);
+  }
+  .tn-mobile-panel__head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.25rem 1.5rem;
+    border-bottom: 1px solid var(--color-border, #e5e7eb);
+  }
+  .tn-mobile-panel__head .tn-nav__brand {
+    color: var(--color-primary);
+  }
+  .tn-mobile-panel__close {
+    background: none;
+    border: none;
+    font-size: 1.75rem;
+    cursor: pointer;
+    color: var(--color-text);
+    line-height: 1;
+    padding: 0.25rem;
+  }
+  .tn-mobile-panel__body {
+    display: flex;
+    flex-direction: column;
+    padding: 1rem 1.5rem 2rem;
+  }
+  .tn-mobile-panel__link {
+    padding: 0.75rem 0;
+    color: var(--color-text);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1rem;
+    border-bottom: 1px solid var(--color-border, #e5e7eb);
+  }
+  .tn-mobile-panel__label {
+    padding: 0.75rem 0 0.25rem;
+    color: var(--color-primary);
+    font-weight: 700;
+    font-size: 0.8rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+  .tn-mobile-panel__sublink {
+    padding: 0.4rem 0 0.4rem 1rem;
+    color: var(--color-text);
+    text-decoration: none;
+    font-size: 0.92rem;
+  }
+  .tn-mobile-panel__cta {
+    margin-top: 0.75rem;
+    padding: 0.75rem 1.25rem;
+    text-align: center;
+    border: 2px solid var(--color-primary);
+    color: var(--color-primary);
+    font-weight: 700;
+    font-size: 0.9rem;
+    text-decoration: none;
+    border-radius: var(--radius-button, 6px);
+  }
+  .tn-mobile-panel__cta--fill {
+    background: var(--color-primary);
+    color: #fff;
+  }
+
+  /* ──────────────── HERO ──────────────── */
+  .tn-hero {
+    position: relative;
+    min-height: 85vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    padding-top: 72px;
+  }
+  .tn-hero__overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(44, 69, 99, 0.85) 0%, rgba(26, 26, 46, 0.6) 100%);
+    z-index: 1;
+  }
+  .tn-hero__inner {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem;
+    padding-top: 3rem;
+    padding-bottom: 2rem;
+  }
+  .tn-hero__content {
+    max-width: 100%;
+  }
+  .tn-hero__label {
+    display: inline-block;
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    color: var(--color-accent, #7B9E87);
+    margin-bottom: 1rem;
+    text-transform: uppercase;
+  }
+  .tn-hero__headline {
+    font-family: var(--font-heading);
+    font-style: italic;
+    font-size: clamp(2.2rem, 5vw, 3.5rem);
+    color: #fff;
+    line-height: 1.1;
+    margin-bottom: 1.25rem;
+    max-width: 600px;
+  }
+  .tn-hero__subline {
+    color: rgba(255, 255, 255, 0.85);
+    font-size: 1.05rem;
+    line-height: 1.7;
+    max-width: 520px;
+    margin-bottom: 2rem;
+  }
+  .tn-hero__buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+  .tn-hero__btn-outline {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.875rem 2rem;
+    border: 2px solid #fff;
+    color: #fff;
+    font-family: var(--font-heading);
+    font-weight: 600;
+    font-size: 0.95rem;
+    border-radius: var(--radius-button, 6px);
+    text-decoration: none;
+    transition: background-color 0.2s, color 0.2s;
+  }
+  .tn-hero__btn-outline:hover {
+    background: #fff;
+    color: var(--color-primary);
+  }
+
+  /* Hero form card */
+  .tn-hero__form-card {
+    background: #fff;
+    border-radius: var(--radius-card, 12px);
+    padding: 2rem;
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.2);
+    position: relative;
+    z-index: 2;
+    max-width: 100%;
+  }
+  .tn-hero__form-title {
+    font-family: var(--font-heading);
+    font-size: 1.35rem;
+    color: var(--color-text);
+    margin-bottom: 1.25rem;
+    text-align: center;
+  }
+  .tn-hero__form {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+  .tn-input {
+    width: 100%;
+    padding: 0.8rem 1rem;
+    border: 1px solid var(--color-border, #d1d5db);
+    border-radius: var(--radius-button, 6px);
+    font-family: var(--font-body);
+    font-size: 0.92rem;
+    color: var(--color-text);
+    background: #fff;
+    transition: border-color 0.2s, box-shadow 0.2s;
+    outline: none;
+    -webkit-appearance: none;
+    appearance: none;
+  }
+  .tn-input:focus {
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 3px rgba(44, 69, 99, 0.1);
+  }
+  .tn-input--textarea {
+    resize: vertical;
+    min-height: 100px;
+  }
+  .tn-hero__form-submit {
+    width: 100%;
+    padding: 0.9rem 1.5rem;
+    background: var(--color-primary);
+    color: #fff;
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: 0.92rem;
+    letter-spacing: 0.04em;
+    border: none;
+    border-radius: var(--radius-button, 6px);
+    cursor: pointer;
+    transition: background-color 0.2s, transform 0.15s;
+  }
+  .tn-hero__form-submit:hover {
+    filter: brightness(1.1);
+    transform: translateY(-1px);
+  }
+
+  /* Hero stats bar */
+  .tn-hero__stats {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    justify-content: center;
+    gap: 3rem;
+    padding: 1.5rem 0 2rem;
+  }
+  .tn-hero__stat {
+    text-align: center;
+  }
+  .tn-hero__stat-num {
+    display: block;
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: 1.75rem;
+    color: #fff;
+    line-height: 1.2;
+  }
+  .tn-hero__stat-label {
+    display: block;
+    font-size: 0.78rem;
+    color: rgba(255, 255, 255, 0.7);
+    margin-top: 0.2rem;
+    letter-spacing: 0.03em;
+  }
+
+  /* ──────────────── SHARED SECTION TYPOGRAPHY ──────────────── */
+  .tn-section-subtitle {
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--color-accent, #7B9E87);
+    text-align: center;
+    margin-bottom: 0.5rem;
+  }
+  .tn-section-heading {
+    text-align: center;
+    margin-bottom: 3rem;
+    color: var(--color-text);
+  }
+  .tn-section-heading--left {
+    text-align: left;
+  }
+  .tn-link-arrow {
+    display: inline-flex;
+    align-items: center;
+    color: var(--color-primary);
+    font-weight: 700;
+    font-size: 0.92rem;
+    text-decoration: none;
+    letter-spacing: 0.04em;
+    transition: gap 0.2s;
+    gap: 0.25rem;
+  }
+  .tn-link-arrow:hover {
+    gap: 0.5rem;
+    text-decoration: underline;
+  }
+
+  /* ──────────────── SERVICES ──────────────── */
+  .tn-services {
+    background: var(--color-background);
+  }
+  .tn-services__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  .tn-services__card {
+    position: relative;
+    display: block;
+    border-radius: var(--radius-card, 12px);
+    overflow: hidden;
+    aspect-ratio: 4 / 3;
+    text-decoration: none;
+  }
+  .tn-services__card-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s ease;
+  }
+  .tn-services__card:hover .tn-services__card-img {
+    transform: scale(1.05);
+  }
+  .tn-services__card-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(0deg, rgba(0, 0, 0, 0.65) 0%, transparent 60%);
+    display: flex;
+    align-items: flex-end;
+    padding: 1.5rem;
+  }
+  .tn-services__card-name {
+    color: #fff;
+    font-size: 1.25rem;
+    font-family: var(--font-heading);
+    margin: 0;
+  }
+  .tn-services__more {
+    text-align: center;
+    margin-top: 2.5rem;
+  }
+
+  /* ──────────────── ABOUT ──────────────── */
+  .tn-about {
+    background: var(--color-surface, #f4f6f8);
+  }
+  .tn-about__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+    align-items: center;
+  }
+  .tn-about__text {
+    color: var(--color-text-light, #555);
+    line-height: 1.8;
+    margin-bottom: 1rem;
+    font-size: 0.98rem;
+  }
+  .tn-about__stats {
+    display: flex;
+    gap: 2rem;
+    margin-top: 1.5rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--color-border, #e5e7eb);
+  }
+  .tn-about__stat {
+    text-align: center;
+  }
+  .tn-about__stat-num {
+    display: block;
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: 1.5rem;
+    color: var(--color-primary);
+    line-height: 1.2;
+  }
+  .tn-about__stat-label {
+    display: block;
+    font-size: 0.78rem;
+    color: var(--color-text-light, #555);
+    margin-top: 0.15rem;
+  }
+  .tn-about__image-wrap {
+    border-radius: var(--radius-card, 12px);
+    overflow: hidden;
+  }
+  .tn-about__image {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+    display: block;
+  }
+
+  /* ──────────────── VALUE PROPS ──────────────── */
+  .tn-values {
+    background: var(--color-background);
+  }
+  .tn-values__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  .tn-values__card {
+    padding: 2rem 1.75rem;
+    background: var(--color-background);
+    border: 1px solid var(--color-border, #e5e7eb);
+    border-top: 3px solid var(--color-primary);
+    border-radius: var(--radius-card, 12px);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+  .tn-values__card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+  }
+  .tn-values__card-title {
+    font-size: 1.1rem;
+    margin-bottom: 0.6rem;
+    color: var(--color-text);
+  }
+  .tn-values__card-desc {
+    font-size: 0.92rem;
+    color: var(--color-text-light, #555);
+    line-height: 1.65;
+  }
+
+  /* ──────────────── CTA ──────────────── */
+  .tn-cta {
+    background: var(--color-primary);
+    padding: 5rem 0;
+  }
+  .tn-cta__inner {
+    text-align: center;
+  }
+  .tn-cta__headline {
+    color: #fff;
+    margin-bottom: 1rem;
+  }
+  .tn-cta__subline {
+    color: rgba(255, 255, 255, 0.85);
+    font-size: 1.1rem;
+    max-width: 600px;
+    margin: 0 auto 2rem;
+    line-height: 1.7;
+  }
+  .tn-cta__buttons {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+  }
+  .tn-cta__btn-white {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.875rem 2rem;
+    background: #fff;
+    color: var(--color-primary);
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: 0.95rem;
+    border-radius: var(--radius-button, 6px);
+    text-decoration: none;
+    transition: transform 0.15s, box-shadow 0.2s;
+  }
+  .tn-cta__btn-white:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+  }
+  .tn-cta__btn-outline {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.875rem 2rem;
+    border: 2px solid #fff;
+    color: #fff;
+    font-family: var(--font-heading);
+    font-weight: 600;
+    font-size: 0.95rem;
+    border-radius: var(--radius-button, 6px);
+    text-decoration: none;
+    transition: background-color 0.2s, color 0.2s;
+  }
+  .tn-cta__btn-outline:hover {
+    background: #fff;
+    color: var(--color-primary);
+  }
+
+  /* ──────────────── TESTIMONIALS ──────────────── */
+  .tn-testimonials {
+    background: var(--color-surface, #f4f6f8);
+  }
+  .tn-testimonials__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  .tn-testimonials__card {
+    background: #fff;
+    border-radius: var(--radius-card, 12px);
+    padding: 2rem;
+    border: 1px solid var(--color-border, #e5e7eb);
+    transition: box-shadow 0.2s;
+  }
+  .tn-testimonials__card:hover {
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+  }
+  .tn-testimonials__quote-icon {
+    font-family: var(--font-heading);
+    font-size: 3rem;
+    line-height: 1;
+    color: var(--color-primary);
+    margin-bottom: 0.5rem;
+    opacity: 0.5;
+  }
+  .tn-testimonials__stars {
+    display: flex;
+    gap: 2px;
+    margin-bottom: 0.75rem;
+  }
+  .tn-testimonials__star {
+    flex-shrink: 0;
+  }
+  .tn-testimonials__text {
+    color: var(--color-text);
+    font-size: 0.95rem;
+    line-height: 1.7;
+    margin-bottom: 1.25rem;
+    font-style: italic;
+  }
+  .tn-testimonials__author {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.75rem;
+  }
+  .tn-testimonials__name {
+    font-weight: 700;
+    font-size: 0.92rem;
+    color: var(--color-text);
+  }
+  .tn-testimonials__service {
+    font-size: 0.78rem;
+    padding: 0.2rem 0.6rem;
+    background: var(--color-surface, #f4f6f8);
+    color: var(--color-primary);
+    border-radius: 20px;
+    font-weight: 600;
+  }
+
+  /* ──────────────── GALLERY ──────────────── */
+  .tn-gallery {
+    background: var(--color-background);
+  }
+  .tn-gallery__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+  .tn-gallery__item {
+    border-radius: var(--radius-card, 12px);
+    overflow: hidden;
+    aspect-ratio: 4 / 3;
+  }
+  .tn-gallery__img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s ease;
+  }
+  .tn-gallery__item:hover .tn-gallery__img {
+    transform: scale(1.05);
+  }
+
+  /* ──────────────── FAQ ──────────────── */
+  .tn-faq {
+    background: var(--color-surface, #f4f6f8);
+  }
+  .tn-faq__list {
+    max-width: 800px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+  .tn-faq__item {
+    background: #fff;
+    border-radius: var(--radius-card, 12px);
+    border: 1px solid var(--color-border, #e5e7eb);
+    overflow: hidden;
+    transition: box-shadow 0.2s;
+  }
+  .tn-faq__item[open] {
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+  }
+  .tn-faq__question {
+    padding: 1.25rem 1.5rem;
+    font-family: var(--font-heading);
+    font-weight: 600;
+    font-size: 1rem;
+    color: var(--color-text);
+    cursor: pointer;
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: color 0.2s;
+  }
+  .tn-faq__question::-webkit-details-marker {
+    display: none;
+  }
+  .tn-faq__question::after {
+    content: "+";
+    font-size: 1.3rem;
+    font-weight: 300;
+    color: var(--color-primary);
+    transition: transform 0.2s;
+    flex-shrink: 0;
+    margin-left: 1rem;
+  }
+  .tn-faq__item[open] .tn-faq__question::after {
+    transform: rotate(45deg);
+  }
+  .tn-faq__question:hover {
+    color: var(--color-primary);
+  }
+  .tn-faq__answer {
+    padding: 0 1.5rem 1.25rem;
+    color: var(--color-text-light, #555);
+    font-size: 0.94rem;
+    line-height: 1.75;
+  }
+
+  /* ──────────────── CONTACT ──────────────── */
+  .tn-contact {
+    background: var(--color-background);
+  }
+  .tn-contact__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+  .tn-contact__form {
+    display: flex;
+    flex-direction: column;
+    gap: 0.85rem;
+  }
+  .tn-contact__info {
+    padding: 2rem;
+    background: var(--color-surface, #f4f6f8);
+    border-radius: var(--radius-card, 12px);
+    height: fit-content;
+  }
+  .tn-contact__info-heading {
+    margin-bottom: 0.75rem;
+    color: var(--color-text);
+  }
+  .tn-contact__info-text {
+    color: var(--color-text-light, #555);
+    font-size: 0.94rem;
+    line-height: 1.7;
+    margin-bottom: 1.5rem;
+  }
+  .tn-contact__info-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.75rem 0;
+    border-top: 1px solid var(--color-border, #e5e7eb);
+    font-size: 0.92rem;
+  }
+  .tn-contact__info-row a {
+    color: var(--color-primary);
+    text-decoration: none;
+    font-weight: 600;
+  }
+  .tn-contact__info-row a:hover {
+    text-decoration: underline;
+  }
+
+  /* ──────────────── FOOTER ──────────────── */
+  .tn-footer {
+    background: var(--color-primary);
+    padding: 4rem 0 0;
+    color: rgba(255, 255, 255, 0.85);
+  }
+  .tn-footer__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+    padding-bottom: 3rem;
+  }
+  .tn-footer__brand {
+    font-family: var(--font-heading);
+    color: #fff;
+    font-size: 1.25rem;
+    margin-bottom: 0.75rem;
+  }
+  .tn-footer__desc {
+    font-size: 0.88rem;
+    line-height: 1.7;
+    margin-bottom: 1rem;
+    opacity: 0.8;
+  }
+  .tn-footer__phone {
+    color: #fff;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 1rem;
+  }
+  .tn-footer__phone:hover {
+    text-decoration: underline;
+  }
+  .tn-footer__heading {
+    color: #fff;
+    font-size: 0.92rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+  }
+  .tn-footer__list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  .tn-footer__list li {
+    margin-bottom: 0.5rem;
+    font-size: 0.88rem;
+  }
+  .tn-footer__list a {
+    color: rgba(255, 255, 255, 0.75);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .tn-footer__list a:hover {
+    color: #fff;
+  }
+  .tn-footer__bottom {
+    border-top: 1px solid rgba(255, 255, 255, 0.15);
+    padding: 1.25rem 0;
+    text-align: center;
+    font-size: 0.82rem;
+    opacity: 0.7;
+  }
+
+  /* ════════════════════════════════════════════════════════════════════════ */
+  /*  RESPONSIVE BREAKPOINTS                                                 */
+  /* ════════════════════════════════════════════════════════════════════════ */
+
+  /* 640px — small tablets */
+  @media (min-width: 640px) {
+    .tn-services__grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    .tn-values__grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    .tn-testimonials__grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    .tn-gallery__grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    .tn-footer__grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  /* 768px — tablets */
+  @media (min-width: 768px) {
+    .tn-hero__inner {
+      flex-direction: row;
+      align-items: center;
+      padding-top: 4rem;
+      padding-bottom: 3rem;
+    }
+    .tn-hero__content {
+      flex: 0 0 58%;
+      max-width: 58%;
+      padding-right: 2rem;
+    }
+    .tn-hero__form-card {
+      flex: 0 0 38%;
+      max-width: 38%;
+    }
+    .tn-about__grid {
+      grid-template-columns: 1fr 1fr;
+      gap: 3.5rem;
+    }
+    .tn-contact__grid {
+      grid-template-columns: 1.2fr 0.8fr;
+    }
+    .tn-testimonials__grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    .tn-cta {
+      padding: 5rem 0;
+    }
+  }
+
+  /* 1024px — desktop */
+  @media (min-width: 1024px) {
+    .tn-nav__toggle {
+      display: none;
+    }
+    .tn-nav__links {
+      display: flex;
+    }
+    .tn-nav__actions {
+      display: flex;
+    }
+    .tn-services__grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+    .tn-values__grid {
+      grid-template-columns: repeat(4, 1fr);
+    }
+    .tn-testimonials__grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+    .tn-gallery__grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+    .tn-footer__grid {
+      grid-template-columns: 1.5fr 1fr 1fr 1fr;
+    }
+    .tn-hero__content {
+      flex: 0 0 60%;
+      max-width: 60%;
+    }
+    .tn-hero__form-card {
+      flex: 0 0 36%;
+      max-width: 36%;
+    }
+    .tn-hero__headline {
+      font-size: clamp(2.5rem, 4vw, 3.5rem);
+    }
+  }
+</style>
